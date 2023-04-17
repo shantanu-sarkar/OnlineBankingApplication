@@ -11,15 +11,66 @@ public class Transaction {
 	@Id
 	private int transactionId;
 	
-	private User payee;
+	private Account payee;
 	
-	private User payer;
+	private Account payer;
 	
 	private double amount;
 	
-	private LocalDateTime timeOfTransaction;
+	private LocalDateTime transactionDate;
 	
 	public Transaction() {
-		// TODO Auto-generated constructor stub
+		
 	}
+
+	public int getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(int transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public Account getPayee() {
+		return payee;
+	}
+
+	public void setPayee(Account payee) {
+		this.payee = payee;
+	}
+
+	public Account getPayer() {
+		return payer;
+	}
+
+	public void setPayer(Account payer) {
+		this.payer = payer;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public LocalDateTime getTransactionDate() {
+		return transactionDate;
+	}
+
+	public void setTransactionDate(LocalDateTime transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	public Transaction(int transactionId, Account payee, Account payer, double amount, LocalDateTime transactionDate) {
+	
+		this.transactionId = transactionId;
+		this.payee = payee;
+		this.payer = payer;
+		this.amount = amount;
+		this.transactionDate = transactionDate;
+	}
+
+
 }
