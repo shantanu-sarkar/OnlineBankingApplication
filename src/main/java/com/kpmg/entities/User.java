@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class User {
@@ -38,7 +40,8 @@ private long aadharNumber;
 @Column(name = "Date of Birth")
 private Date dateOfBirth;
 
-@Column(name = "Account")
+@PrimaryKeyJoinColumn(name = "Account")
+@OneToOne
 private Account account;
 
 
