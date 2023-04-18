@@ -9,24 +9,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table
 public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@MapsId
 	private int accountId;
-	
-	
-//	@OneToOne
-//	private int userId;
+
 	
 	@OneToMany
 	private List<Transaction> transactions;
@@ -41,13 +37,7 @@ public class Account {
 		this.accountId = accountId;
 	}
 
-//	public int getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(int userId) {
-//		this.userId = userId;
-//	}
+	
 
 	public List<Transaction> getTransactions() {
 		return transactions;

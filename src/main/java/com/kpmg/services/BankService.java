@@ -3,10 +3,12 @@ package com.kpmg.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kpmg.entities.Account;
 import com.kpmg.repositories.AccountRepository;
 
+@Service
 public class BankService {
 
 	

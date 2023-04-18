@@ -8,6 +8,9 @@ import com.kpmg.entities.Transaction;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
 
-	List<Transaction> findByAccountId(int accountId);
+	List<Transaction> findByPayerId(int accountId);
+	List<Transaction> findByPayeeId(int accountId);
+	List<Transaction> findByPayerIdOrPayeeId(int accountId,int account2Id);
+	
 
 }

@@ -31,7 +31,7 @@ public class TransactionService {
 	}
 
 	public List<Transaction> getTransactionsByAccountId(int accountId) {
-		return transactionRepository.findByAccountId(accountId);
+		return transactionRepository.findByPayerIdOrPayeeId(accountId,accountId);
 	}
 
 	public Transaction createTransaction(Transaction transaction) {

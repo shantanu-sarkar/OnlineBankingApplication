@@ -20,6 +20,13 @@ public class BankController {
   @Autowired
   private BankService bankService;
   
+  
+  @RequestMapping("/")
+  public String home()
+  {
+	  return "home";
+  }
+  
   @PostMapping("/account")
   public ResponseEntity<Account> createAccount(@RequestBody Account account) {
     Account newAccount = bankService.createAccount(account);
