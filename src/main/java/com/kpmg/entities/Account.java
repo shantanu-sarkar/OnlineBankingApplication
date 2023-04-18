@@ -1,6 +1,6 @@
 package com.kpmg.entities;
 
-import java.util.List;
+import java.util.*;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -54,6 +54,14 @@ public class Account {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+
+	public Account() {
+		
+		this.transactions = new ArrayList<Transaction>();
+		this.balance = 0;
+	}
+	
+	
 	
 	
 	
