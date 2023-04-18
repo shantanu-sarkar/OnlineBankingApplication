@@ -7,14 +7,13 @@ import com.kpmg.entities.Account;
 import com.kpmg.repositories.AccountRepository;
 
 @Service
-public class AccountService {
-    
+public class AccountService
+{  
     @Autowired
     private AccountRepository accountRepository;
 
     public Account createAccount(Account account) {
-        // Perform any necessary validations
-        // Set up initial balance, etc.
+        
         Account newAccount = accountRepository.save(account);
         return newAccount;
     }

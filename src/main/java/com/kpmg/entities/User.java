@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 public class User {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private int UserId;
+private int userId;
 
 @Column(name = "First Name")
 private String firstName;
@@ -47,7 +47,7 @@ public User() {
 
 
 public int getUserId() {
-	return UserId;
+	return userId;
 }
 
 

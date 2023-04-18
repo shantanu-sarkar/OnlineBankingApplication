@@ -4,7 +4,11 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 
 @Entity
@@ -14,76 +18,48 @@ public class Account {
 	private int accountId;
 	
 	
-	private User user;
+	@OneToOne
+	private int userId;
 	
-	
+	@ManyToOne
 	private List<Transaction> transactions;
 	
 	private double balance;
-	
-	
-	
+
 	public int getAccountId() {
 		return accountId;
 	}
-
-
 
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
 
-
-
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
-
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-
-
 
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}
 
-
-
 	public void setTransactions(List<Transaction> transactions) {
 		this.transactions = transactions;
 	}
-
-
 
 	public double getBalance() {
 		return balance;
 	}
 
-
-
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
-
-
-	public Account() {
-		// TODO Auto-generated constructor stub
-	}
-
-
-
-	public Account(int accountId, User user, List<Transaction> transactions, double balance) {
-		
-		this.accountId = accountId;
-		this.user = user;
-		this.transactions = transactions;
-		this.balance = balance;
-	}
+	
+	
+	
 	
 	
 	
