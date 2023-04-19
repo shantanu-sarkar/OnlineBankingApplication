@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kpmg.entities.Account;
 import com.kpmg.entities.Transaction;
+import com.kpmg.entities.TransactionType;
 import com.kpmg.repositories.AccountRepository;
 import com.kpmg.repositories.TransactionRepository;
 
@@ -34,12 +35,12 @@ public class TransactionService {
 		return transactionRepository.findByPayerIdOrPayeeId(accountId,accountId);
 	}
 
-	public Transaction createTransaction(Transaction transaction) {
+	public Transaction createTransaction(Transaction transaction,int id){
 
 		if (transaction.getTransactionType().equals("WITHDRAW")) {
-			Account account = accountRepository.getByAccountId(transaction.getPayeeId());
+			Account account = accountRepository.findById(transaction.getPayeeId()).get();
 
-			if (account != null && account.getBalance() > transaction.getAmount()) {
+			if (account != null && account.getBalance() > transaction.getAmount() && transaction.getPayeeId() == id) {
 				account.setBalance(account.getBalance() - transaction.getAmount());
 				List<Transaction> temp = account.getTransactions();
 				temp.add(transaction);
@@ -52,9 +53,9 @@ public class TransactionService {
 		}
 
 		if (transaction.getTransactionType().equals("DEPOSIT")) {
-			Account account = accountRepository.getByAccountId(transaction.getPayerId());
-
-			if (account != null) {
+			Account account = accountRepository.findById(transaction.getPayerId()).get();
+//TODO : MAKE DIFFERENT PATHWAYS ACCORDING TO DIFFERENT ERRORS SUCH AS ID NOT MATCHING OR ID NOT FOUND OE ETC
+			if (account != null && transaction.getPayerId()== id) {
 				account.setBalance(account.getBalance() + transaction.getAmount());
 				List<Transaction> temp = account.getTransactions();
 				temp.add(transaction);
@@ -65,22 +66,26 @@ public class TransactionService {
 		}
 
 		if (transaction.getTransactionType().equals("TRANSFER")) {
-			Account payerAccount = accountRepository.getByAccountId(transaction.getPayerId());
-			Account payeeAccount = accountRepository.getByAccountId(transaction.getPayeeId());
+			
+			Account payerAccount = accountRepository.findById(transaction.getPayerId()).get();
+			Account payeeAccount = accountRepository.findById(transaction.getPayeeId()).get();
 
 			if (payerAccount != null && payeeAccount != null && transaction.getAmount() < payerAccount.getBalance())
 
 			{
-				payerAccount.setBalance(payerAccount.getBalance() - transaction.getAmount());
-				List<Transaction> temp1 = payerAccount.getTransactions();
+				Account payer = accountRepository.findById(payerAccount.getAccountId()).get();
+				payer.setBalance(payerAccount.getBalance() - transaction.getAmount());
+				List<Transaction> temp1 = payer.getTransactions();
 				temp1.add(transaction);
-
-				payeeAccount.setBalance(payeeAccount.getBalance() + transaction.getAmount());
-				List<Transaction> temp2 = payeeAccount.getTransactions();
+				payer.setTransactions(temp1);
+				Account payee = accountRepository.findById(payeeAccount.getAccountId()).get();
+				payee.setBalance(payeeAccount.getBalance() + transaction.getAmount());
+				List<Transaction> temp2 = payee.getTransactions();
 				temp2.add(transaction);
-
-				accountRepository.save(payerAccount);
-				accountRepository.save(payeeAccount);
+				payee.setTransactions(temp2);
+				
+				accountRepository.save(payer);
+				accountRepository.save(payee);
 			}
 
 		}

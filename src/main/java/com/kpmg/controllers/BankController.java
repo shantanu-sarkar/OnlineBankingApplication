@@ -1,8 +1,11 @@
 package com.kpmg.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +43,9 @@ public class BankController {
   
   
   
+  
+  //Only ADMIN
+  
   @PostMapping("/user")
   public ResponseEntity<User> createUser(@RequestBody User user)
   {
@@ -51,6 +57,13 @@ public class BankController {
 	  return ResponseEntity.ok(user1);
   }
   
+  
+  @GetMapping("/user")
+  public ResponseEntity<List<User>> displayUser()
+  {
+	 ;
+	  return ResponseEntity.ok( userService.getUsers());
+  }
   
   
   

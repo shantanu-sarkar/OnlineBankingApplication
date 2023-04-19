@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,6 +14,7 @@ import jakarta.persistence.ManyToOne;
 public class Transaction {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int transactionId;
 	
 	
@@ -23,7 +26,7 @@ public class Transaction {
 	
 	private LocalDateTime transactionDate;
 	
-	private TransactionType transactionType;
+	private String transactionType;
 
 	public int getTransactionId() {
 		return transactionId;
@@ -62,11 +65,11 @@ public class Transaction {
 	}
 	
 
-	public TransactionType getTransactionType() {
+	public String getTransactionType() {
 		return transactionType;
 	}
 
-	public void setTransactionType(TransactionType transactionType) {
+	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
 	}
 
@@ -75,7 +78,7 @@ public class Transaction {
 	}
 
 	public Transaction(int transactionId, int payerId, int payeeId, double amount, LocalDateTime transactionDate,
-			TransactionType transactionType) {
+			String transactionType) {
 		super();
 		this.transactionId = transactionId;
 		this.payerId = payerId;
@@ -83,6 +86,10 @@ public class Transaction {
 		this.amount = amount;
 		this.transactionDate = transactionDate;
 		this.transactionType = transactionType;
+	}
+
+	public Transaction() {
+		// TODO Auto-generated constructor stub
 	}
 
 	

@@ -56,9 +56,9 @@ public class Account {
 	}
 
 	public Account() {
-		
+		System.out.print("Account Constructor called");
 		this.transactions = new ArrayList<Transaction>();
-		this.balance = 0;
+		this.balance = 500000;
 	}
 	
 	
