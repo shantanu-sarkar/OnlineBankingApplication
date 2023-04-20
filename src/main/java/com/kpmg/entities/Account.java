@@ -25,6 +25,7 @@ public class Account {
 
 	
 	@OneToMany
+	@JoinColumn(name="transactionIdFk")
 	private List<Transaction> transactions;
 	
 	private double balance;

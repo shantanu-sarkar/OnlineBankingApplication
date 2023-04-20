@@ -1,6 +1,6 @@
 package com.kpmg.services;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.kpmg.entities.Account;
 import com.kpmg.entities.Transaction;
-import com.kpmg.entities.TransactionType;
 import com.kpmg.repositories.AccountRepository;
 import com.kpmg.repositories.TransactionRepository;
 
@@ -35,7 +34,7 @@ public class TransactionService {
 		return transactionRepository.findByPayerIdOrPayeeId(accountId,accountId);
 	}
 
-	public Transaction createTransaction(Transaction transaction,int id){
+	public void createTransaction(Transaction transaction,int id){
 
 		if (transaction.getTransactionType().equals("WITHDRAW")) {
 			Account account = accountRepository.findById(transaction.getPayeeId()).get();
@@ -44,11 +43,9 @@ public class TransactionService {
 				account.setBalance(account.getBalance() - transaction.getAmount());
 				List<Transaction> temp = account.getTransactions();
 				temp.add(transaction);
-
+				transactionRepository.save(transaction);
 				accountRepository.save(account);
-			} else {
-				return null;
-			}
+			} 
 
 		}
 
@@ -59,8 +56,9 @@ public class TransactionService {
 				account.setBalance(account.getBalance() + transaction.getAmount());
 				List<Transaction> temp = account.getTransactions();
 				temp.add(transaction);
-
+				transactionRepository.save(transaction);
 				accountRepository.save(account);
+				
 			}
 
 		}
@@ -73,23 +71,24 @@ public class TransactionService {
 			if (payerAccount != null && payeeAccount != null && transaction.getAmount() < payerAccount.getBalance())
 
 			{
-				Account payer = accountRepository.findById(payerAccount.getAccountId()).get();
-				payer.setBalance(payerAccount.getBalance() - transaction.getAmount());
-				List<Transaction> temp1 = payer.getTransactions();
-				temp1.add(transaction);
-				payer.setTransactions(temp1);
-				Account payee = accountRepository.findById(payeeAccount.getAccountId()).get();
-				payee.setBalance(payeeAccount.getBalance() + transaction.getAmount());
-				List<Transaction> temp2 = payee.getTransactions();
-				temp2.add(transaction);
-				payee.setTransactions(temp2);
 				
-				accountRepository.save(payer);
-				accountRepository.save(payee);
+				payerAccount.setBalance(payerAccount.getBalance() - transaction.getAmount());
+				List<Transaction> temp1 = payerAccount.getTransactions();
+				temp1.add(transaction);
+				payerAccount.setTransactions(temp1);
+				payeeAccount.setBalance(payeeAccount.getBalance() + transaction.getAmount());
+				List<Transaction> temp2 = payeeAccount.getTransactions();
+				temp2.add(transaction);
+				payeeAccount.setTransactions(temp2);
+				transactionRepository.save(transaction);
+				accountRepository.save(payerAccount);
+				accountRepository.save(payeeAccount);
+			
 			}
+			
 
 		}
 
-		return transactionRepository.save(transaction);
+		
 	}
 }

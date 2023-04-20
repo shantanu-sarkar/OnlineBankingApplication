@@ -32,7 +32,7 @@ public class TransactionController {
 	}
 	
 	@PostMapping(value="/{id}/newtransaction")
-	public ResponseEntity<Transaction> newTransaction(@RequestBody Transaction transaction, @PathVariable("id") int id)
+	public ResponseEntity<String> newTransaction(@RequestBody Transaction transaction, @PathVariable("id") int id)
 	{
 		Transaction tran = new Transaction();
 		System.out.println(tran.getTransactionId());
@@ -41,7 +41,8 @@ public class TransactionController {
 		tran.setPayerId(transaction.getPayerId());
 		tran.setTransactionType(transaction.getTransactionType());
 		tran.setTransactionDate(transaction.getTransactionDate());
-		return ResponseEntity.ok(transactionService.createTransaction(tran,id));
+		transactionService.createTransaction(tran,id);
+		return ResponseEntity.ok("done");
 	}
 	
 	
