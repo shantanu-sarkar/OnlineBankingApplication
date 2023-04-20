@@ -28,7 +28,7 @@ public class MyConfiguration {
         CorsConfiguration config = new CorsConfiguration();
         System.out.println("Called");
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://127.0.0.1:9000");
+        config.addAllowedOrigin("http://localhost:3000/");
         config.setAllowedMethods(Arrays.asList("POST", "OPTIONS", "GET", "DELETE", "PUT"));
         config.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
         source.registerCorsConfiguration("/**", config);
