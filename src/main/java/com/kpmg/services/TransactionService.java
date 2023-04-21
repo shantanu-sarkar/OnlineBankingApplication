@@ -1,6 +1,4 @@
 package com.kpmg.services;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -83,12 +81,7 @@ public class TransactionService {
 				transactionRepository.save(transaction);
 				accountRepository.save(payerAccount);
 				accountRepository.save(payeeAccount);
-			
 			}
-			
-
-		}
-
-		
+		}	
 	}
 }

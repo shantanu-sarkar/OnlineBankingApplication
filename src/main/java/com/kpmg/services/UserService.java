@@ -10,15 +10,12 @@ import com.kpmg.repositories.UserRepository;
 
 @Service
 public class UserService {
-
-		
-	
-	 
 	    @Autowired
 	    private UserRepository userRepository;
 
 	    public User createUser(User user) {
 	        
+	    	
 	       return userRepository.save(user);
 	        
 	    }
@@ -27,5 +24,4 @@ public class UserService {
 	    {
 	    	return userRepository.findAll();
 	    }
-	}
-
+}
