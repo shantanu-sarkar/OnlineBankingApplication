@@ -28,6 +28,8 @@ public class Transaction {
 	private LocalDateTime transactionDate;
 	
 	private String transactionType;
+	
+	private String remarks;
 
 	public int getTransactionId() {
 		return transactionId;
@@ -43,6 +45,15 @@ public class Transaction {
 
 	public void setPayerId(int payerId) {
 		this.payerId = payerId;
+	}
+	
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	public int getPayeeId() {
