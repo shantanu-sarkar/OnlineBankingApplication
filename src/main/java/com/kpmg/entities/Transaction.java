@@ -1,5 +1,6 @@
 package com.kpmg.entities;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
@@ -25,7 +26,7 @@ public class Transaction {
 	
 	private double amount;
 	
-	private LocalDateTime transactionDate;
+	private Date transactionDate;
 	
 	private String transactionType;
 	
@@ -72,7 +73,7 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public LocalDateTime getTransactionDate() {
+	public Date getTransactionDate() {
 		return transactionDate;
 	}
 	
@@ -85,11 +86,11 @@ public class Transaction {
 		this.transactionType = transactionType;
 	}
 
-	public void setTransactionDate(LocalDateTime transactionDate) {
+	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 
-	public Transaction(int transactionId, int payerId, int payeeId, double amount, LocalDateTime transactionDate,
+	public Transaction(int transactionId, int payerId, int payeeId, double amount, Date transactionDate,
 			String transactionType) {
 		super();
 		this.transactionId = transactionId;

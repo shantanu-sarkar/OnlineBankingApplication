@@ -41,6 +41,7 @@ public class TransactionController {
 		tran.setPayerId(transaction.getPayerId());
 		tran.setTransactionType(transaction.getTransactionType());
 		tran.setTransactionDate(transaction.getTransactionDate());
+		tran.setRemarks(transaction.getRemarks());
 		transactionService.createTransaction(tran,id);
 		return ResponseEntity.ok("done");
 	}
