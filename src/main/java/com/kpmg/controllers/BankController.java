@@ -61,7 +61,7 @@ public class BankController {
   @GetMapping("/user")
   public ResponseEntity<List<User>> displayUser()
   {
-	 ;
+	 
 	  return ResponseEntity.ok( userService.getUsers());
   }
   

@@ -1,5 +1,7 @@
 package com.kpmg.controllers;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,8 @@ public class TransactionController {
 		tran.setPayeeId(transaction.getPayeeId());
 		tran.setPayerId(transaction.getPayerId());
 		tran.setTransactionType(transaction.getTransactionType());
-		tran.setTransactionDate(transaction.getTransactionDate());
+		tran.setTransactionDate(new Date(System.currentTimeMillis()).toLocaleString());
+		System.out.print(tran.getTransactionDate());
 		tran.setRemarks(transaction.getRemarks());
 		transactionService.createTransaction(tran,id);
 		return ResponseEntity.ok("done");

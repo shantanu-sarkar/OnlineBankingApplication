@@ -26,7 +26,7 @@ public class Transaction {
 	
 	private double amount;
 	
-	private Date transactionDate;
+	private String transactionDate;
 	
 	private String transactionType;
 	
@@ -73,7 +73,7 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public Date getTransactionDate() {
+	public String getTransactionDate() {
 		return transactionDate;
 	}
 	
@@ -86,11 +86,11 @@ public class Transaction {
 		this.transactionType = transactionType;
 	}
 
-	public void setTransactionDate(Date transactionDate) {
+	public void setTransactionDate(String transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 
-	public Transaction(int transactionId, int payerId, int payeeId, double amount, Date transactionDate,
+	public Transaction(int transactionId, int payerId, int payeeId, double amount, String transactionDate,
 			String transactionType) {
 		super();
 		this.transactionId = transactionId;

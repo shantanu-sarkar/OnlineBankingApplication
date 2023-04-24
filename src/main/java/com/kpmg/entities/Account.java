@@ -37,7 +37,8 @@ public class Account {
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-
+	
+	public List<Integer> beneficiaries;
 	
 
 	public List<Transaction> getTransactions() {
