@@ -40,6 +40,24 @@ private long aadharNumber;
 @Column(name = "Date of Birth")
 private Date dateOfBirth;
 
+@Column(name="User_Password")
+private String password;
+
+public User(String password) {
+	this.password = password;
+}
+
+
+public String getPassword() {
+	return password;
+}
+
+
+public void setPassword(String password) {
+	this.password = password;
+}
+
+
 @PrimaryKeyJoinColumn(name = "Account")
 @OneToOne
 private Account account;

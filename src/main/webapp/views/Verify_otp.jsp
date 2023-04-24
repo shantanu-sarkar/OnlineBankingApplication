@@ -12,7 +12,9 @@
 <div class="alert alert-success" role="alert">
 We have sent the OTP to your Register Email_ID.....
 </div>
-<form method="post" th:action=@{/send-otp}">
+
+
+<form method="post" action="./verify-otp">
 
 <div class="form-group text-centre" >
 
