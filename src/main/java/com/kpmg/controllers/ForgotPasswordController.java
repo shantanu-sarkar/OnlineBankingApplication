@@ -35,8 +35,8 @@ public class ForgotPasswordController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private BCryptPasswordEncoder bcrypt;
+//	@Autowired
+//	private BCryptPasswordEncoder bcrypt;
 	
 	@RequestMapping("/forgot")
 	public String openEmailForm() {
@@ -95,7 +95,7 @@ public class ForgotPasswordController {
 		String email=(String)session.getAttribute("email");
 		User user=this.userRepository.getByEmailID(email);
 		
-		user.setPassword(this.bcrypt.encode(newpassword));
+		user.setPassword(newpassword);
 		this.userRepository.save(user);
 		
 		return "your password has been changed";
