@@ -74,6 +74,9 @@ public class TransactionService {
 				List<Transaction> temp1 = payerAccount.getTransactions();
 				temp1.add(transaction);
 				payerAccount.setTransactions(temp1);
+				List<Integer> benef = payerAccount.getBeneficiaries();
+				benef.add(payeeAccount.getAccountId());
+				payerAccount.setBeneficiaries(benef);
 				payeeAccount.setBalance(payeeAccount.getBalance() + transaction.getAmount());
 				List<Transaction> temp2 = payeeAccount.getTransactions();
 				temp2.add(transaction);

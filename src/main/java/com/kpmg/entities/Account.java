@@ -60,7 +60,16 @@ public class Account {
 	public Account() {
 		System.out.print("Account Constructor called");
 		this.transactions = new ArrayList<Transaction>();
+		this.beneficiaries = new ArrayList<Integer>();
 		this.balance = 500000;
+	}
+
+	public List<Integer> getBeneficiaries() {
+		return beneficiaries;
+	}
+
+	public void setBeneficiaries(List<Integer> beneficiaries) {
+		this.beneficiaries = beneficiaries;
 	}
 	
 	
