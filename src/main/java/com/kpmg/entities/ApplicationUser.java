@@ -1,5 +1,6 @@
 package com.kpmg.entities;
 
+import java.util.Date;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,31 @@ public class ApplicationUser implements UserDetails {
 	
 	private String password;
 	
+
+	@Column(name = "First Name")
+	private String firstName;
+
+	@Column(name = "Middle Name")
+	private String middleName;
+
+	@Column(name = "Last Name")
+	private String lastName;
+
+	@Column(name = "Father's Name")
+	private String fatherName;
+
+	@Column(name = "Mobile Number")
+	private long mobileNumber;
+
+	@Column(name = "Email")
+	private String emailID;
+
+	@Column(name = "AadharNumber")
+	private long aadharNumber;
+
+	@Column(name = "Date of Birth")
+	private Date dateOfBirth;
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name = "user_role_junction",
@@ -40,13 +66,128 @@ public class ApplicationUser implements UserDetails {
 	}
 	
 	
-	
-	public ApplicationUser(int userId, String username, String password, Set<Role> authorities) {
+	public ApplicationUser(int userId, String username, String password,Set<Role> authorities) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.authorities = authorities;
+	}
+	
+	public ApplicationUser(int userId, String username, String password, String firstName, String middleName,
+			String lastName, String fatherName, long mobileNumber, String emailID, long aadharNumber, Date dateOfBirth,
+			Set<Role> authorities) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.fatherName = fatherName;
+		this.mobileNumber = mobileNumber;
+		this.emailID = emailID;
+		this.aadharNumber = aadharNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.authorities = authorities;
+	}
+
+
+
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+
+	public String getFatherName() {
+		return fatherName;
+	}
+
+
+
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
+	}
+
+
+
+	public long getMobileNumber() {
+		return mobileNumber;
+	}
+
+
+
+	public void setMobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+
+
+	public String getEmailID() {
+		return emailID;
+	}
+
+
+
+	public void setEmailID(String emailID) {
+		this.emailID = emailID;
+	}
+
+
+
+	public long getAadharNumber() {
+		return aadharNumber;
+	}
+
+
+
+	public void setAadharNumber(long aadharNumber) {
+		this.aadharNumber = aadharNumber;
+	}
+
+
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 

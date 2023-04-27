@@ -36,14 +36,14 @@ public class AuthenticationService {
 	@Autowired
 	private TokenService tokenService;
 	
-	public ApplicationUser registerUser(String username,String password) {
+	public ApplicationUser registerUser(String firstName,String middleName,String lastName,String FathersName,long mobileNo,String email,long AadharNo,Date dateOfBirth,String username,String password) {
 		
 		String encodedPassword = passwordEncoder.encode(password); 
 		Role userRole =roleRepository.findByAuthority("USER").get(); 
 		Set<Role> authorities =new HashSet<>();
 		
 		authorities.add(userRole);
-		return userRepository.save(new ApplicationUser(0,username,encodedPassword,authorities));
+		return userRepository.save(new ApplicationUser(0,username,encodedPassword,firstName,middleName,lastName,FathersName,mobileNo,email,AadharNo,dateOfBirth,authorities));
 	}
 	
 	public LoginResponseDTO loginUser(String username,String password) {

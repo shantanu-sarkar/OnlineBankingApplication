@@ -23,7 +23,7 @@ public class AuthenticationController {
 	@PostMapping("/register")
 	public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
 		
-		return authenticationService.registerUser(body.getUsername(),body.getPassword());
+		return authenticationService.registerUser(body.getFirstName(),body.getMiddleName(),body.getLastName(),body.getFatherName(),body.getMobileNumber(),body.getEmailID(),body.getAadharNumber(),body.getDateOfBirth(),body.getUsername(),body.getPassword());
 	}
 	
 	@PostMapping("/login")
