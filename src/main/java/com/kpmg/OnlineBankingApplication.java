@@ -17,20 +17,52 @@ import java.util.Random;
 
 import com.kpmg.services.EmailService;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+import java.util.Set;
+import java.util.HashSet;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.kpmg.entities.*;
+import com.kpmg.repositories.AuthUserRepository;
+import com.kpmg.repositories.RoleRepository;
+
+
+//@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @ComponentScan({"com.kpmg"})
 @EntityScan("com.kpmg.entities")
 @EnableJpaRepositories("com.kpmg.repositories")
+
+@SpringBootApplication
 public class OnlineBankingApplication {
+
 	Random random= new Random(1000001);
-	
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineBankingApplication.class, args);
 	}
 	
-
-	
-	
+	@Bean
+	CommandLineRunner run(RoleRepository roleRepository,AuthUserRepository userRepository,PasswordEncoder passwordEncoder){
+		
+		return args ->{
+			if(roleRepository.findByAuthority("ADMIN").isPresent()) return;
+			Role adminRole = roleRepository.save(new Role("ADMIN"));
+			
+			roleRepository.save(new Role("USER"));
+			
+			Set<Role> roles=new HashSet<>();
+			roles.add(adminRole);
+			
+			ApplicationUser admin=new ApplicationUser(1,"admin",passwordEncoder.encode("password"),roles);
+			
+			userRepository.save(admin);
+		};
+	}
 
 }
+
+
